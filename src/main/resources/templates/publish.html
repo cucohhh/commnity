@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>commnity</title>
+    <title>publish-commnity</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/community.css">
 
 </head>
 <body>
@@ -48,6 +49,36 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="main container-fluid ">
+    <div class="col-gl-9 col-md-9 col-sm-9">
+        <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+        <hr>
+        <from action="">
+            <div class="form-group">
+                <label for="tittle_problem">问题标题(简单摘要)</label>
+                <input type="text" class="form-control" id="tittle_problem" placeholder="问题标题__">
+            </div>
+            <div class="form-group">
+                <label for="description">问题补充 **必须参照右侧提示</label>
+                <textarea type="text" class="form-control" rows="10" cols="30" name="description" id="discription" ></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tag">添加标签</label>
+                <input type="text" class="form-control" id="tag" placeholder="标签">
+            </div>
+            <button type="button" class="btn-publish btn btn-success ">发布</button>
+
+        </from>
+    </div>
+    <div class="col-gl-3 col-md-3 col-sm-3">
+        <h3>发起问题指南</h3>
+        <div>
+            1. 问题标题：请用简单的语言描述标题，字数不超过25个字<br>
+            2. 问题补充：详细补充您的问题，提供问题相关资料，完善问题确保问题清晰直观<br>
+            3. 添加标签：添加您的问题所符合的标签，以便问题分类和回答<br>
+        </div>
+    </div>
+</div>
 <script src="js/jquery-3.4.1.js" type="application/javascript"></script>
 <script src="js/bootstrap.min.js" type="application/javascript"></script>
 
