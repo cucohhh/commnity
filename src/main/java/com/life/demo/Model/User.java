@@ -8,6 +8,7 @@ public class User {
     private Long gmtCreate;
     private Long gmtModified;
     private String bio;
+    private String avatarUrl;
 
     public Integer getId() {
         return id;
@@ -63,5 +64,13 @@ public class User {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
