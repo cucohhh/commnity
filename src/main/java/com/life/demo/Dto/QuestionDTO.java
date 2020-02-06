@@ -1,6 +1,10 @@
-package com.life.demo.Model;
+package com.life.demo.Dto;
 
-public class Question {
+import com.life.demo.Model.User;
+import lombok.Data;
+
+@Data
+public class QuestionDTO {
     private Integer id;
     private String tittle;
     private String description;
@@ -11,7 +15,8 @@ public class Question {
     private Integer viewCount;
     private Integer likeCount;
     private String tag;
-
+    private User user;
+    private String userAvatar;
 
     public Integer getId() {
         return id;
@@ -93,5 +98,19 @@ public class Question {
         this.tag = tag;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
+    }
 }

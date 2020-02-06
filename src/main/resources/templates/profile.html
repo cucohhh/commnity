@@ -2,19 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>commnity</title>
+    <title th:text="${sectionName}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 
-    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="/css/community.css">
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
-<div class="main container-fluid ">
+<div class="main  container-fluid ">
     <div class="col-gl-9 col-md-9 col-sm-9">
-        <h2><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>发现</h2>
+        <h2><span th:text="${sectionName}"></span></h2>
+        <span th:text="${section}"></span>
+        <span th:text="${section}"></span>
         <hr>
         <div class="media" th:each="question :${paginationDTO.question}">
             <div class="media-left">
@@ -24,9 +26,7 @@
 
             </div>
             <div class="media-body">
-                <h4 class="media-heading" >
-                    <a th:href="@{/question/{id}(id=${question.id})}" th:text="${question.tittle}"></a>
-                </h4>
+                <h4 class="media-heading" th:text="${question.tittle}"></h4>
                 <span th:text="${question.description}"></span><br>
                 <span class="text-desc" > <span th:text="${question.commentCount}" ></span> 回复 ， <span th:text="${question.viewCount}"></span>次浏览 ,<span th:text="${#dates.format(question.getGmtCreate(),'dd MMMM YYYY')}"></span></span>
             </div>
@@ -34,44 +34,50 @@
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li th:if="${paginationDTO.showFirstPage}">
-                    <a href="/?page=1" aria-label="Previous">
+                    <a th:href="@{/profile/{section}(page=${paginationDTO.page},section=${section})}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <li th:if="${paginationDTO.showPreious}">
-                    <a th:href="@{/(page=${paginationDTO.page-1})}" aria-label="Previous">
+                    <a th:href="@{/profile/{section}(page=${paginationDTO.page-1},section=${section})}" aria-label="Previous">
                         <span aria-hidden="true">&lt;</span>
                     </a>
                 </li>
                 <li th:each="page:${paginationDTO.pages} " th:class="${paginationDTO.page == page} ? 'active' : ''">
-                    <a th:href="@{/(page=${page})}"   th:text="${page}" ></a></li>
+                    <a th:href="@{/profile/{section}(page=${page},section=${section})}"   th:text="${page}" ></a></li>
 
                 <li th:if="${paginationDTO.showLast}">
-                    <a th:href="@{/(page=${paginationDTO.page+1})}" aria-label="Next">
+                    <a th:href="@{/profile/{section}(page=${paginationDTO.page+1} ,section=${section})}" aria-label="Next">
                         <span aria-hidden="true">&gt;</span>
                     </a>
                 </li>
                 <li th:if="${paginationDTO.showLastPage}">
-                    <a th:href="@{/(page=${paginationDTO.totalPage})}"aria-label="Next">
+                    <a th:href="@{/profile/{section}(page=${paginationDTO.totalPage},section=${section})}"aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
             </ul>
         </nav>
 
+
+
     </div>
-    <div class="col-gl-3 col-md-3 col-sm-3">
-        <h3>热门话题</h3>
-        <div>
-            1. 问题标题：请用简单的语言描述标题，字数不超过25个字<br>
-            2. 问题补充：详细补充您的问题，提供问题相关资料，完善问题确保问题清晰直观<br>
-            3. 添加标签：添加您的问题所符合的标签，以便问题分类和回答<br>
+    <div class="col-gl-3 col-md-3 col-sm-3 " >
+
+        <div class="profile-section list-group " style="margin-top:15px">
+
+            <a href="/profile/questions"  th:class="${section == 'questions'}? 'active list-group-item':'list-group-item'">我的提问</a>
+            <a href="#"  th:class="${section == 'replies'}? 'active list-group-item':'list-group-item'">
+                最新回复
+                <span class="badge">14</span>
+            </a>
+
         </div>
     </div>
 </div>
 
-<script src="js/jquery-3.4.1.js" type="application/javascript"></script>
-<script src="js/bootstrap.min.js" type="application/javascript"></script>
+<script src="/js/jquery-3.4.1.js" type="application/javascript"></script>
+<script src="/js/bootstrap.min.js" type="application/javascript"></script>
 
 </body>
 </html>

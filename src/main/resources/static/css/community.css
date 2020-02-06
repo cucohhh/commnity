@@ -9,3 +9,22 @@ body{
     float:right;
     margin-bottom: 15px;
 }
+.media-object-img{
+    width:60px;
+    height:60px;
+    border-radius:5px;
+}
+.media-object{
+    width:60px;
+    height:60px;
+    border-radius:5px;
+}
+.text-desc{
+    font-size:12px;
+    font-weight:normal;
+    color:#999999;
+
+}
+.profile-section{
+    margin-top:20px;
+}

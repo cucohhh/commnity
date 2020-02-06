@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${question.tittle}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="/css/community.css">
+</head>
+<body>
+<div th:insert="~{navigation :: nav}"></div>
+<div class="main  container-fluid ">
+    <div class="col-gl-9 col-md-9 col-sm-9">
+        <h3><span th:text="${question.tittle}"></span></h3>
+
+        <hr>
+
+
+
+
+    </div>
+    <div class="col-gl-3 col-md-3 col-sm-3 " >
+
+        <div class="col-gl-12 col-md-12 col-sm-12">
+            <h3>发起人</h3>
+        </div>
+        <div class="col-gl-12 col-md-12 col-sm-12">
+            <h3>相关问题</h3>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery-3.4.1.js" type="application/javascript"></script>
+<script src="/js/bootstrap.min.js" type="application/javascript"></script>
+
+</body>
+</html>

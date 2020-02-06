@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -41,21 +40,8 @@ public class publishController {
         model.addAttribute("description",description);
         model.addAttribute("tag",tag);
 
-        User user= null;
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                String string = cookie.getValue();
-                user = userMapper.findByToken(string);
-                if(user !=null){
-                    request.getSession().setAttribute("user",user);
-                    System.out.println(user.getId());
-                    break;
-                }
-                break;
-            }
-            break;
-        }
+
+        User user = (User) request.getSession().getAttribute("user");
         if(user == null){
             System.out.println("用户未登陆");
             model.addAttribute("error","用户未登陆");
@@ -71,6 +57,9 @@ public class publishController {
         question.setTittle(tittle);
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
+        question.setCommentCount(0);
+        question.setLikeCount(0);
+        question.setViewCount(0);
         questionMapper.create(question);
 
         return "redirect:/";
