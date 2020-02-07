@@ -35,10 +35,7 @@ public class indexController {
 
     ){
 
-        User user = (User) request.getSession().getAttribute("user");
-        if(user == null){
-            return "index";
-        }
+
 
         //List<PaginationDTO> questionDTOList = questionService.List(page,size);
         PaginationDTO paginationDTO = questionService.List(page,size);
@@ -46,7 +43,10 @@ public class indexController {
 
         model.addAttribute("paginationDTO",paginationDTO);
 
-
+        User user = (User) request.getSession().getAttribute("user");
+        if(user == null){
+            return "index";
+        }
 
         return "index";
     }

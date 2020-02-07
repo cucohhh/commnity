@@ -31,6 +31,7 @@
                 <span class="text-desc" > <span th:text="${question.commentCount}" ></span> 回复 ， <span th:text="${question.viewCount}"></span>次浏览 ,<span th:text="${#dates.format(question.getGmtCreate(),'dd MMMM YYYY')}"></span></span>
             </div>
         </div>
+
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li th:if="${paginationDTO.showFirstPage}">
@@ -58,6 +59,7 @@
                 </li>
             </ul>
         </nav>
+
 
     </div>
     <div class="col-gl-3 col-md-3 col-sm-3">

@@ -2,10 +2,7 @@ package com.life.demo.mapper;
 
 import com.life.demo.Dto.QuestionDTO;
 import com.life.demo.Model.Question;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -28,4 +25,7 @@ public interface QuestionMapper {
 
     @Select("select * from question where id = #{id}")
     Question getById(Integer id);
+
+    @Update("update question set tittle=#{tittle} , description=#{description},tag=#{tag},gmt_Modified=#{gmtModified} where id =#{id}")
+    void update(Question question);
 }

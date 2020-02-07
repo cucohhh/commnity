@@ -23,6 +23,22 @@ public class QuestionService {
     private UserMapper userMapper;
 
 
+
+    public void createOrUpdate(Question question) {
+        if(question.getId() == null){
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(question.getGmtCreate());
+            questionMapper.create(question);
+        }else{
+
+
+            question.setGmtModified(question.getGmtCreate());
+            questionMapper.update(question);
+        }
+
+    }
+
+
     public PaginationDTO List(Integer page, Integer size) {
 
         Integer offset = size * (page -1);
