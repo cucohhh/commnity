@@ -2,9 +2,12 @@ package com.life.demo.services;
 
 import com.life.demo.Dto.PaginationDTO;
 import com.life.demo.Dto.QuestionDTO;
+import com.life.demo.Exception.CustomizeErrorCode;
+import com.life.demo.Exception.CustomizeException;
 import com.life.demo.Model.Question;
 import com.life.demo.Model.QuestionExample;
 import com.life.demo.Model.User;
+import com.life.demo.mapper.QuestionExtMapper;
 import com.life.demo.mapper.QuestionMapper;
 import com.life.demo.mapper.UserMapper;
 import org.apache.ibatis.session.RowBounds;
@@ -20,6 +23,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -44,7 +50,10 @@ public class QuestionService {
             QuestionExample questionExample = new QuestionExample();
             questionExample.createCriteria().andIdEqualTo(question.getId());
 
-            questionMapper.updateByExampleSelective(updateQuestion,questionExample);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion,questionExample);
+            if(updated != 1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
 
     }
@@ -134,6 +143,9 @@ public class QuestionService {
     public QuestionDTO getById(Integer id) {
 
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -141,6 +153,16 @@ public class QuestionService {
         questionDTO.setUser(user);
         return questionDTO;
 
+
+    }
+
+    public void incView(Integer id) {
+
+
+       Question record = new Question();
+       record.setId(id);
+       record.setViewCount(1);
+       questionExtMapper.incView(record);
 
     }
 }
